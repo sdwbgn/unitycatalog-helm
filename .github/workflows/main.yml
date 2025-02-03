@@ -1,0 +1,27 @@
+on:
+  push:
+    tags:
+      - v*.*.*
+
+jobs:
+  publish:
+    name: Build and publish unitycatalog-helm chart
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Parse version tag
+        id: get-version
+        uses: battila7/get-version-action@v2
+      - name: Push chart to registry
+        uses: appany/helm-oci-chart-releaser@v0.3.0
+        with:
+          name: unitycatalog
+          repository: sdwbgn/unitycatalog-helm
+          tag: ${{ steps.get-version.outputs.version-without-v }}
+          path: chart
+          registry: ghcr.io
+          registry_username: ${{ github.actor }}
+          registry_password: ${{ secrets.GITHUB_TOKEN }}
