@@ -21,7 +21,7 @@ using the [Helm](https://github.com/helm/helm) package manager.
 To install the chart with the release name `unitycatalog`:
 
 ```sh
-helm install unitycatalog oci://ghcr.io/sdwbgn/unitycatalog-helm/unitycatalog-helm:0.0.1
+helm install unitycatalog oci://ghcr.io/sdwbgn/unitycatalog-helm/unitycatalog:0.0.1
 ```
 
 ## Configuration
