@@ -67,6 +67,13 @@ server:
       size: 100Mi
       storageClassName: ""
 
+    # Extra config properties
+    # Will be added to server.properties
+    # extraProperties:
+    #   my-config.property1: my-value1
+    #   my-config.property2: my-value2
+    extraProperties: {}
+
   service:
     type: ClusterIP
     port: 8080
