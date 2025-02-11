@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: {{ include "unitycatalog.server.apiEndpoint" . | sha256sum }}
+        checksum/config: {{ include "unitycatalog.server.configTemplate" . | sha256sum }}
       {{- with .Values.server.statefulset.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -203,8 +203,6 @@ spec:
     {{- if and (eq .Values.db.type "file") .Values.db.fileConfig.persistence.enabled }}
     - metadata:
         name: db-volume
-        labels:
-          {{- include "unitycatalog.server.labels" . | nindent 10 }}
       spec:
         accessModes: {{ .Values.db.fileConfig.persistence.accessModes }}
         resources:
@@ -215,8 +213,6 @@ spec:
     {{- if .Values.server.config.persistence.enabled }}
     - metadata:
         name: config-volume
-        labels:
-          {{- include "unitycatalog.server.labels" . | nindent 10 }}
       spec:
         accessModes: {{ .Values.server.config.persistence.accessModes }}
         resources:

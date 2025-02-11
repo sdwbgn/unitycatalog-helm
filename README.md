@@ -5,7 +5,7 @@
 Unity Catalog is a universal catalog for data and AI. It offers an open source solution designed to seamlessly integrate with various clouds, data formats, and data platforms.
 
 ## Introduction
-This chart deploys [Unity Catalog](https://github.com/unitycatalog/unitycatalog) on a Kubernetes cluster 
+This chart deploys [Unity Catalog](https://github.com/unitycatalog/unitycatalog) on a Kubernetes cluster
 using the [Helm](https://github.com/helm/helm) package manager.
 
 ## Prerequisites
@@ -21,7 +21,7 @@ using the [Helm](https://github.com/helm/helm) package manager.
 To install the chart with the release name `unitycatalog`:
 
 ```sh
-helm install unitycatalog oci://ghcr.io/sdwbgn/unitycatalog-helm/unitycatalog:0.0.1
+helm install unitycatalog oci://ghcr.io/sdwbgn/unitycatalog-helm/unitycatalog:0.0.2
 ```
 
 ## Configuration
@@ -52,6 +52,7 @@ The following table lists the configurable parameters of the Unity Catalog chart
 | `server.config.persistence.accessModes`             | Access modes for the server configuration                                                | `[ "ReadWriteOnce" ]`                              | `[ "ReadWriteOnce" ]`                                                                                                                                                                                                  |
 | `server.config.persistence.size`                    | Size of the server configuration                                                         | `100Mi`                                            | `100Mi`                                                                                                                                                                                                                |
 | `server.config.persistence.storageClassName`        | Storage class for the server configuration                                               | `""`                                               | `""`                                                                                                                                                                                                                   |
+| `server.config.extraProperties`                     | Additional properties that will be added to server config                                | `{}`                                               | <pre>my-config.property1: my-value1<br>my-config.property2: my-value2</pre>                                                                                                                                            |
 | `server.service.type`                               | Service type for the server                                                              | `ClusterIP`                                        | `LoadBalancer`                                                                                                                                                                                                         |
 | `server.service.port`                               | Service port for the server                                                              | `8080`                                             | `8080`                                                                                                                                                                                                                 |
 | `server.statefulset.port`                           | Port for the server statefulset                                                          | `8080`                                             | `8080`                                                                                                                                                                                                                 |
@@ -110,7 +111,7 @@ The following table lists the configurable parameters of the Unity Catalog chart
 | `serviceAccount.name`                               | Name of the service account, when not set `default` service account used                 | `""`                                               | `"mySA"`                                                                                                                                                                                                               |
 
 ## Uninstalling the Chart
-To uninstall the `unitycatalog` deployment:
+To uninstall the `unitycatalog` chart:
 
 ```sh
 helm uninstall unitycatalog
